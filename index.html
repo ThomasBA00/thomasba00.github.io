@@ -1,7 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Page Table</title>
+  <style>
+    h1 {
+        text-align: center;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    border: 2px solid #333;
+    }
+
+    th, td {
+    padding: 15px;
+    border: 1px solid #999;
+    }
+
+    .counter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .counter input[type="number"] {
+      width: 50px;
+      text-align: center;
+      font-size: 16px;
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+    }
+
+    .counter input[type="number"]::-webkit-inner-spin-button,
+    .counter input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .counter button {
+      font-size: 18px;
+      width: 30px;
+      height: 30px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+  <h1>Gourmet Helper</h1>
+
+  <table>
+    <thead>
+        <tr>
+            <td colspan="5" style="padding: 1px; font-size: 20px; font-weight: bold;"><h2>Ingredients</h2></td>
+        </tr>
+      <tr>
+        <th>Sweet</th>
+        <th>Sour</th>
+        <th>Salty</th>
+        <th>Bitter</th>
+        <th>Umami</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="counter">
+            <button onclick="changeValue(this, -1)">-</button>
+            <input type="number" value="0" min="0">
+            <button onclick="changeValue(this, 1)">+</button>
+          </div>
+        </td>
+        <td>
+          <div class="counter">
+            <button onclick="changeValue(this, -1)">-</button>
+            <input type="number" value="0" min="0">
+            <button onclick="changeValue(this, 1)">+</button>
+          </div>
+        </td>
+        <td>
+          <div class="counter">
+            <button onclick="changeValue(this, -1)">-</button>
+            <input type="number" value="0" min="0">
+            <button onclick="changeValue(this, 1)">+</button>
+          </div>
+        </td>
+        <td>
+          <div class="counter">
+            <button onclick="changeValue(this, -1)">-</button>
+            <input type="number" value="0" min="0">
+            <button onclick="changeValue(this, 1)">+</button>
+          </div>
+        </td>
+        <td>
+          <div class="counter">
+            <button onclick="changeValue(this, -1)">-</button>
+            <input type="number" value="0" min="0">
+            <button onclick="changeValue(this, 1)">+</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function changeValue(button, delta) {
+      const input = button.parentElement.querySelector('input');
+      input.value = parseInt(input.value) + delta;
+    }
+  </script>
+
 </body>
 </html>
