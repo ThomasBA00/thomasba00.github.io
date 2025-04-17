@@ -79,37 +79,37 @@
       <tr>
         <td>
           <div class="counter">
-            <button onclick="changeValue(this, -1)">-</button>
-            <input type="number" value="0" min="0">
-            <button onclick="changeValue(this, 1)">+</button>
+            <button onclick="changeValue(this, -1, 'sweetIngredientCounter')">-</button>
+            <input type="number" min="0">
+            <button onclick="changeValue(this, 1, 'sweetIngredientCounter')">+</button>
           </div>
         </td>
         <td>
           <div class="counter">
-            <button onclick="changeValue(this, -1)">-</button>
-            <input type="number" value="0" min="0">
-            <button onclick="changeValue(this, 1)">+</button>
+            <button onclick="changeValue(this, -1, 'sourIngredientCounter')">-</button>
+            <input type="number" min="0">
+            <button onclick="changeValue(this, 1, 'sourIngredientCounter')">+</button>
           </div>
         </td>
         <td>
           <div class="counter">
-            <button onclick="changeValue(this, -1)">-</button>
-            <input type="number" value="0" min="0">
-            <button onclick="changeValue(this, 1)">+</button>
+            <button onclick="changeValue(this, -1, 'saltyIngredientCounter')">-</button>
+            <input type="number" min="0">
+            <button onclick="changeValue(this, 1, 'saltyIngredientCounter')">+</button>
           </div>
         </td>
         <td>
           <div class="counter">
-            <button onclick="changeValue(this, -1)">-</button>
-            <input type="number" value="0" min="0">
-            <button onclick="changeValue(this, 1)">+</button>
+            <button onclick="changeValue(this, -1, 'bitterIngredientCounter')">-</button>
+            <input type="number" min="0">
+            <button onclick="changeValue(this, 1, 'bitterIngredientCounter')">+</button>
           </div>
         </td>
         <td>
           <div class="counter">
-            <button onclick="changeValue(this, -1)">-</button>
-            <input type="number" value="0" min="0">
-            <button onclick="changeValue(this, 1)">+</button>
+            <button onclick="changeValue(this, -1, 'umamiIngredientCounter')">-</button>
+            <input type="number" min="0">
+            <button onclick="changeValue(this, 1, 'umamiIngredientCounter')">+</button>
           </div>
         </td>
       </tr>
@@ -117,9 +117,27 @@
   </table>
 
   <script>
-    function changeValue(button, delta) {
+    const input = document.getElementById('counterInput');
+
+    // Load the saved value on page load
+    window.onload = function () {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const input = counter.querySelector('input');
+      const key = counter.querySelector('button').getAttribute('onclick').match(/'([^']+)'/)[1];
+      const savedValue = localStorage.getItem(key);
+      input.value = savedValue !== null ? savedValue : 0;
+      });
+    };
+
+    function changeValue(button, delta, storageKey) {
       const input = button.parentElement.querySelector('input');
-      input.value = parseInt(input.value) + delta;
+      let currentValue = parseInt(input.value) || 0;
+      currentValue = Math.max(0, currentValue + delta);
+      input.value = currentValue;
+
+      // Save the value to localStorage
+      localStorage.setItem(storageKey, currentValue);
     }
   </script>
 
